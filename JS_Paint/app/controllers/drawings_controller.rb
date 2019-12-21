@@ -1,8 +1,15 @@
 class DrawingsController < ActionController::API
+   
     def index
-        drawings = Drawing.all 
-        render json: drawings
+       drawings = Drawing.all 
+        render json: DrawingSerializer.new(drawings)
     end 
+
+    def show 
+        drawing = Drawing.find(params[:id])
+        render json: DrawingSerializer.new(drawing)
+    end 
+   
 
     def create
        drawing = Drawing.create(drawing_params) 
