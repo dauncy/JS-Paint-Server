@@ -5,4 +5,3 @@ require_relative 'application'
 Rails.application.initialize!
 
 
-JS_PAINT_PASSWORD = "js_paint_password"

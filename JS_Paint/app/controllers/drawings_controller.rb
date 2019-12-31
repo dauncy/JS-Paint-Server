@@ -12,8 +12,14 @@ class DrawingsController < ActionController::API
    
 
     def create
-       drawing = Drawing.create(drawing_params) 
-       render json: drawing
+       drawing = Drawing.new(drawing_params) 
+       
+       
+       drawing.save
+       
+
+       render json: DrawingSerializer.new(drawing)
+       
     end 
 
     private
