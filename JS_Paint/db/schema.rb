@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_210853) do
     t.string "name"
     t.string "description"
     t.string "img_src"
+    t.string "song_src"
   end
 
   create_table "drawings", force: :cascade do |t|

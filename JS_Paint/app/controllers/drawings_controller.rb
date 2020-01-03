@@ -2,7 +2,7 @@ class DrawingsController < ActionController::API
    
     def index
        drawings = Drawing.all 
-        render json: DrawingSerializer.new(drawings)
+       render json: DrawingSerializer.new(drawings)
     end 
 
     def show 

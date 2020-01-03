@@ -1,4 +1,4 @@
 class DrawingSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :user, :challenge, :image, :canvas_url
+  attributes :id, :user, :challenge, :canvas_url
 end

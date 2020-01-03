@@ -5,7 +5,8 @@ class UsersController < ActionController::API
     end 
 
     def show
-        user = User.find(parmas[:id])
+    
+        user = User.find_by(username: params[:id])
         render json: UserSerializer.new(user)
 
     end 
