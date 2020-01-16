@@ -2,12 +2,19 @@ class DrawingsController < ActionController::API
    
     def index
        drawings = Drawing.all 
-       render json: DrawingSerializer.new(drawings)
+       options = {
+        include: [:user, :challenge, :"challenges.img_src"]
+        }
+       render json: DrawingSerializer.new(drawings, options)
     end 
 
     def show 
         drawing = Drawing.find(params[:id])
-        render json: DrawingSerializer.new(drawing)
+        options = {
+            include: [:user, :challenge, :"challenges.img_src"]
+            }
+
+        render json: DrawingSerializer.new(drawing, options)
     end 
    
 
