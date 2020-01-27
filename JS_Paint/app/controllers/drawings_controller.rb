@@ -2,31 +2,33 @@ class DrawingsController < ActionController::API
    
     def index
        drawings = Drawing.all 
-       options = {
-        include: [:user, :challenge, :"challenges.img_src"]
-        }
-       render json: DrawingSerializer.new(drawings, options)
+       
+       render json: drawings, :include => [:challenge, :user] 
     end 
 
     def show 
         drawing = Drawing.find(params[:id])
-        options = {
-            include: [:user, :challenge, :"challenges.img_src"]
-            }
-
-        render json: DrawingSerializer.new(drawing, options)
+        challenge = drawing.challenge
+        likes= drawing.likes
+        user = drawing.user
+       render json: drawing, :include => [:challenge, :likes, :user]
     end 
    
 
     def create
-       drawing = Drawing.new(drawing_params) 
+       drawing = Drawing.create(drawing_params) 
        
        
-       drawing.save
+       
        
 
-       render json: DrawingSerializer.new(drawing)
-       
+       render json: drawing, :include => [:challenge, :likes]
+    end 
+
+    def destroy
+        @drawing = Drawing.find(params[:id])
+        @drawing.destroy
+     
     end 
 
     private

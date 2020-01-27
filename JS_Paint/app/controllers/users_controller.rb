@@ -1,24 +1,49 @@
 class UsersController < ActionController::API
     def index
         users = User.all 
-        options = {
-            include: [:drawings, :chalenges]
-            }
-        render json: UserSerializer.new(users, options)
+        
+        render json: users
+
     end 
 
     def show
     
-        user = User.find_by(username: params[:id])
-        options = {
-            include: [:drawings, :challenges]
-            }
-        render json: UserSerializer.new(user, options)
+       user = User.find_by(username: params[:id])
+       drawings = user.drawings
+       challenges = drawings.map{|drawing| drawing.challenge }
+       likes = drawings.map{|drawing| drawing.likes}
+       
 
+    #    byebug
+       
+        # options = {}
+        # options[:include] = [:drawings, :'drawings.challenge.img_src']
+        
+        # render json: UserSerializer.new(user, options)
+        
+        render json: user, :include => [:drawings => {:include => [:challenge, :likes]}]
     end 
 
     def create 
         user = User.create(user_params)
+        
+        render json: user, :include => [:drawings => {:include => :challenge }]
+        
+    end 
+
+    def update
+        user = User.find_by(username: params[:id])
+        user.update(user_params)
+        render json: user, :include => [:drawings => {:include => :challenge }]
+    end 
+
+    def destroy 
+        user = User.find_by(username: params[:id])
+        
+        
+        user.drawings.destroy_all if user.drawings
+        
+         user.destroy
         render json: user
     end 
 

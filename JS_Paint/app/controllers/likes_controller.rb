@@ -14,9 +14,15 @@ class LikesController < ActionController::API
         like= Like.create(like_params) 
         render json: like
      end 
+
+     def destroy
+        like = Like.find(params[:id])
+        like.destroy
+        render json: like
+     end 
  
      private
-     def drawing_params
+     def like_params
          params.require(:like).permit(:user_id, :drawing_id)
      end 
 end
