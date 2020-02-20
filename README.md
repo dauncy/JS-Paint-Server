@@ -1,24 +1,7 @@
-# README
+**JS Paint Backend**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+_For a description on the frontend and user story visit [JS-Paint-Frontend-Repo](http://github.com/dauncy/js-paint-client) or 
+visit the live site at [JS-Paint](http://dauncy.github.io/js-paint-client/)._
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+***Languages and Technologies Used***
+- Ruby on Rails for schema migrations using postgresql to persist user-data to the databse. 
